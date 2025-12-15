@@ -10,86 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "../libft/libft.h"
-#include "mlx.h"
+#include "so_long.h"
 
-int	close_window(void *param)
+int is_ber(char *argv)
 {
-	(void)param;
-	exit(0);
+	int	i;
+
+	if (!argv)
+		return (0);
+	i = 0;
+	while (argv[i])
+		i++;
+	i -= 1;
+	if (argv[i - 3] == '.' && argv[i - 2] == 'b' && argv[i - 1] == 'e' 
+		&& argv[i] == 'r')
+		return (1);
 	return (0);
 }
 
-void	draw_map(void *mlx, void *win, char **map)
+int	main(int argc, char **argv)
 {
-	int	y = 0;
-	int	x;
-	int	tile_size = 64; // cada quadradinho 64x64 pixels
+	t_game game;
 
-	while (map[y])
+	if (argc != 2)
 	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == '1') // parede
-				mlx_pixel_put(mlx, win, x * tile_size, y * tile_size, 0x00444444);
-			else if (map[y][x] == '0') // chão
-				mlx_pixel_put(mlx, win, x * tile_size, y * tile_size, 0x00AAAAAA);
-			else if (map[y][x] == 'P') // player (verde)
-				mlx_pixel_put(mlx, win, x * tile_size, y * tile_size, 0x0000FF00); 
-			else if (map[y][x] == 'C') // coletável (amarelo)
-				mlx_pixel_put(mlx, win, x * tile_size, y * tile_size, 0x00FFFF00);
-			else if (map[y][x] == 'E') // saída (vermelho)
-				mlx_pixel_put(mlx, win, x * tile_size, y * tile_size, 0x00FF0000);
-			x++;
-		}
-		y++;
-	}
-}
-
-char	**red_map(char *path)
-{
-	int		fd;
-	char	*line;
-	char	**map;
-	int		i;
-
-	i = 0;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	map = malloc(sizeof(char *) * 100);
-	if (!map)
-		return (NULL);
-	line = get_next_line(fd);
-	while ((line != NULL))
-	{
-		map[i++] = line;
-		line = get_next_line(fd);
-	}
-	map[i] = NULL;
-	close(fd);
-	return (map);
-}
-
-int	main(void)
-{
-	void	*mlx;
-	void	*win;
-	char	**map;
-
-	map = red_map("maps/mapa.txt");
-	if (!map)
-	{
-		perror("map error");
+		write(1, "Error: invalid parameter\n", 26);
 		return (1);
 	}
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 800, 600, "so_long test");
-	draw_map(mlx, win, map);
-	mlx_hook(win, 17, 0, close_window, NULL);
-	mlx_loop(mlx);
+	game.map = read_map(argv[1]);
+	init_map_info(&game);
+	if (game.map && map_checker(&game) && is_ber(argv[1]))
+	{
+		game_init(&game);
+		gameplay(&game);
+		mlx_loop(game.mlx);
+	}
+	else
+	{
+		if (game.map)
+			free_map(game.map);
+		write(2, "Error: Invalid Map\n", 18);
+	}
 	return (0);
 }

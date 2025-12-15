@@ -10,51 +10,61 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long.a
+NAME        = so_long
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-RM = rm -f
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -g
+RM          = rm -f
 
-SRCS = src/main.c
-OBJS = $(SRCS:.c=.o)
+SRCS = \
+	src/main.c \
+	src/end_game.c \
+	src/map_check.c \
+	src/map_check_flod_fill.c \
+	src/read_map.c \
+	src/init_map_info.c \
+	src/init_game.c \
+	src/draw_game.c \
+	src/gameplay.c \
+	src/player_new.c
 
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+OBJS        = $(SRCS:.c=.o)
 
-MLX_DIR = minilibx-linux
-MLX = $(MLK_DIR)/libmlx.a
+LIBFT_DIR   = libft
+LIBFT       = $(LIBFT_DIR)/libft.a
 
-INCLUDES = -I$(LIBFT_DIR) -I$(MLK_DIR)
+MLX_DIR     = minilibx-linux
+MLX         = $(MLX_DIR)/libmlx.a
 
-MLX_FLAGS = -L$(MLK_DIR) -lmlx -lXext -lX11 -lm
+INCLUDES    = -I$(LIBFT_DIR) -I$(MLX_DIR)
+
+MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 all: $(LIBFT) $(MLX) $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -no-pie -o $(NAME)
 
 $(LIBFT):
-	make all -C $(LIBFT_DIR)
+	make bonus -C $(LIBFT_DIR)
 
 $(MLX):
 	make -C $(MLX_DIR)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-norm: 
+norm:
 	norminette $(SRCS) *.h
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS)
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(MLX_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 	make fclean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
 
 re: fclean all
 
