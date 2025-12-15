@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnovais <jnovais@student.42.fr>             +#+  +:+       +#+       */
+/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 09:30:37 by jnovais            #+#    #+#            */
-/*   Updated: 2025/12/12 09:30:37 by jnovais           ###   ########.fr      */
+/*   Created: 2025/12/12 09:30:37 by jnovais           #+#    #+#             */
+/*   Updated: 2025/12/15 19:45:35 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	is_retangular(char **map)
 	}
 	return (1);
 }
+
 static int	is_wall(char **map)
 {
 	int	i;

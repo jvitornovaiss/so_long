@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 23:18:14 by marvin            #+#    #+#             */
-/*   Updated: 2025/12/12 23:18:14 by marvin           ###   ########.fr       */
+/*   Created: 2025/12/12 23:18:14 by jnovais           #+#    #+#             */
+/*   Updated: 2025/12/15 19:49:49 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	exit_draw(t_game *game, int x, int y)
 	{
 		mlx_destroy_image(game->mlx, game->img_exit);
 		game->img_exit = mlx_xpm_file_to_image
-			(game->mlx, "images/konoha_gate_open_green_bg.xpm", &game->img_w, &game->img_h);
+			(game->mlx, "images/konoha_gate_open_green_bg.xpm",
+				&game->img_w, &game->img_h);
 	}
 	img_draw(game, game->img_exit, x, y);
 }
@@ -48,7 +49,6 @@ int	map_draw(t_game *game)
 		while (game->map[y][x])
 		{
 			img_draw(game, game->img_backg, x, y);
-
 			if (game->map[y][x] == '1')
 				img_draw(game, game->img_wall, x, y);
 			else if (game->map[y][x] == 'P')
@@ -57,7 +57,6 @@ int	map_draw(t_game *game)
 				img_draw(game, game->img_colect, x, y);
 			else if (game->map[y][x] == 'E')
 				exit_draw(game, x, y);
-
 			x++;
 		}
 		y++;

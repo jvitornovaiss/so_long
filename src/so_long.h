@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnovais <jnovais@student.42.fr>             +#+  +:+       +#+       */
+/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 09:30:37 by jnovais            #+#    #+#            */
-/*   Updated: 2025/12/12 09:30:37 by jnovais           ###   ########.fr      */
+/*   Created: 2025/12/12 09:30:37 by jnovais           #+#    #+#             */
+/*   Updated: 2025/12/15 20:12:16 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ typedef struct s_game
 	int		endgame;
 }	t_game;
 
+typedef struct s_fill
+{
+	int	y;
+	int	x;
+	int	height;
+	int	width;
+}	t_fill;
+
 # define KEY_ESC 65307
 # define KEY_Q 113
 
@@ -68,5 +76,7 @@ void	player_a(t_game *game);
 int		exit_game(t_game *game);
 int		map_draw(t_game *game);
 void	gameplay(t_game *game);
+int		get_height(char **map);
+char	**dup_map(char **map);
 
 #endif

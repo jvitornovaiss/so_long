@@ -6,13 +6,13 @@
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 22:01:18 by jnovais           #+#    #+#             */
-/*   Updated: 2025/11/13 20:45:07 by jnovais          ###   ########.fr       */
+/*   Updated: 2025/12/15 19:47:14 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int is_ber(char *argv)
+int	is_ber(char *argv)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int is_ber(char *argv)
 	while (argv[i])
 		i++;
 	i -= 1;
-	if (argv[i - 3] == '.' && argv[i - 2] == 'b' && argv[i - 1] == 'e' 
+	if (argv[i - 3] == '.' && argv[i - 2] == 'b' && argv[i - 1] == 'e'
 		&& argv[i] == 'r')
 		return (1);
 	return (0);
@@ -30,7 +30,7 @@ int is_ber(char *argv)
 
 int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
 	{

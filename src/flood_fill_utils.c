@@ -1,41 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   flod_fill_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 09:30:37 by jnovais           #+#    #+#             */
-/*   Updated: 2025/12/15 19:46:18 by jnovais          ###   ########.fr       */
+/*   Created: 2025/12/15 20:05:30 by jnovais           #+#    #+#             */
+/*   Updated: 2025/12/15 20:11:48 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**read_map(char *path)
+int	get_height(char **map)
 {
-	int		fd;
-	char	*line;
-	char	*holder_map;
-	char	*holder;
-	char	**map;
+	int	h;
 
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	h = 0;
+	while (map[h])
+		h++;
+	return (h);
+}
+
+char	**dup_map(char **map)
+{
+	int		h;
+	char	**copy;
+	int		i;
+
+	h = get_height(map);
+	copy = malloc(sizeof(char *) * (h + 1));
+	if (!copy)
 		return (NULL);
-	holder_map = ft_strdup("");
-	while (1)
+	i = 0;
+	while (i < h)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		holder = holder_map;
-		holder_map = ft_strjoin(holder, line);
-		free(line);
-		free(holder);
+		copy[i] = ft_strdup(map[i]);
+		if (!copy[i])
+		{
+			while (--i >= 0)
+				free(copy[i]);
+			free(copy);
+			return (NULL);
+		}
+		i++;
 	}
-	map = ft_split(holder_map, '\n');
-	free(holder_map);
-	close(fd);
-	return (map);
+	copy[i] = NULL;
+	return (copy);
 }

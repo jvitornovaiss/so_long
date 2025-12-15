@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 21:04:03 by marvin            #+#    #+#             */
-/*   Updated: 2025/12/12 21:04:03 by marvin           ###   ########.fr       */
+/*   Created: 2025/12/12 21:04:03 by jnovais           #+#    #+#             */
+/*   Updated: 2025/12/15 19:43:28 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,25 @@ static void	process_cell(t_game *game, int y, int x)
 
 void	init_map_info(t_game *game)
 {
-	int	y = 0;
+	int	y;
 	int	x;
 
+	y = 0;
 	game->n_colect = 0;
 	game->n_exit = 0;
 	game->n_player = 0;
 	game->map_h = 0;
 	game->map_w = ft_strlen(game->map[0]);
-	while (game->map[game->map_h]) 
+	while (game->map[game->map_h])
 		game->map_h++;
 	while (y < game->map_h)
 	{
 		x = 0;
 		while (x < game->map_w)
-			process_cell(game, y, x), x++;
+		{
+			process_cell(game, y, x);
+			x++;
+		}
 		y++;
 	}
 }

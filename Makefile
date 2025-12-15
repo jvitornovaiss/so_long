@@ -6,7 +6,7 @@
 #    By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/08 23:34:13 by jnovais           #+#    #+#              #
-#    Updated: 2025/10/31 20:48:48 by jnovais          ###   ########.fr        #
+#    Updated: 2025/12/15 20:14:58 by jnovais          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,14 @@ SRCS = \
 	src/main.c \
 	src/end_game.c \
 	src/map_check.c \
-	src/map_check_flod_fill.c \
+	src/flood_fill.c \
 	src/read_map.c \
 	src/init_map_info.c \
 	src/init_game.c \
 	src/draw_game.c \
 	src/gameplay.c \
-	src/player_new.c
+	src/player_new.c \
+	src/flood_fill_utils.c
 
 OBJS        = $(SRCS:.c=.o)
 

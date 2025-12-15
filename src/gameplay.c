@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gameplay.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 15:39:56 by marvin            #+#    #+#             */
-/*   Updated: 2025/12/14 15:39:56 by marvin           ###   ########.fr       */
+/*   Created: 2025/12/15 19:23:13 by jnovais           #+#    #+#             */
+/*   Updated: 2025/12/15 19:51:40 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	keypress(int keycode, t_game *game)
 	else if (!game->endgame)
 	{
 		game_events(keycode, game);
-		printf("Moves: %d\n", game->moves);
+		printf("Moves: %d\n", game->moves); //TODO mudar para write
 	}
 	return (0);
 }
