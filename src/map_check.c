@@ -6,7 +6,7 @@
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 09:30:37 by jnovais           #+#    #+#             */
-/*   Updated: 2025/12/15 19:45:35 by jnovais          ###   ########.fr       */
+/*   Updated: 2025/12/20 17:13:18 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,6 @@ static int	is_wall(char **map)
 
 static int	is_pec(t_game *game)
 {
-	int	i;
-	int	j;
-
-	game->n_colect = 0;
-	game->n_player = 0;
-	game->n_exit = 0;
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j] != '\0')
-		{
-			if (game->map[i][j] == 'P')
-				game->n_player++;
-			else if (game->map[i][j] == 'E')
-				game->n_exit++;
-			else if (game->map[i][j] == 'C')
-				game->n_colect++;
-			j++;
-		}
-		i++;
-	}
 	if (game->n_player != 1 || game->n_exit == 0 || game->n_colect == 0)
 		return (0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:23:13 by jnovais           #+#    #+#             */
-/*   Updated: 2025/12/15 19:51:40 by jnovais          ###   ########.fr       */
+/*   Updated: 2025/12/15 20:18:40 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static int	keypress(int keycode, t_game *game)
 	else if (!game->endgame)
 	{
 		game_events(keycode, game);
-		printf("Moves: %d\n", game->moves); //TODO mudar para write
+		write(1, "Moves:", 6);
+		ft_putnbr_fd(game->moves, 1);
+		write(1, "\n:", 1);
 	}
 	return (0);
 }
