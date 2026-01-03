@@ -6,7 +6,7 @@
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 21:04:03 by jnovais           #+#    #+#             */
-/*   Updated: 2025/12/15 19:43:28 by jnovais          ###   ########.fr       */
+/*   Updated: 2025/12/27 19:20:50 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_map_info(t_game *game)
 	while (y < game->map_h)
 	{
 		x = 0;
-		while (x < game->map_w)
+		while (game->map[y][x])
 		{
 			process_cell(game, y, x);
 			x++;

@@ -6,7 +6,7 @@
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 22:01:18 by jnovais           #+#    #+#             */
-/*   Updated: 2025/12/15 19:47:14 by jnovais          ###   ########.fr       */
+/*   Updated: 2025/12/27 19:30:34 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	game.map = read_map(argv[1]);
-	init_map_info(&game);
-	if (game.map && map_checker(&game) && is_ber(argv[1]))
+	if (game.map && is_ber(argv[1]) && map_checker(&game))
 	{
 		game_init(&game);
 		gameplay(&game);

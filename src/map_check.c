@@ -6,7 +6,7 @@
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 09:30:37 by jnovais           #+#    #+#             */
-/*   Updated: 2025/12/20 17:13:18 by jnovais          ###   ########.fr       */
+/*   Updated: 2025/12/27 20:19:16 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,16 @@ static int	is_validate(char **map)
 
 int	map_checker(t_game *game)
 {
-	if (is_retangular(game->map) && is_wall(game->map) && is_pec(game)
-		&& is_validate(game->map) && check_reachable(game))
-		return (1);
-	return (0);
+	if (!game || !game->map)
+		return (0);
+	if (!is_retangular(game->map)
+		|| !is_wall(game->map)
+		|| !is_validate(game->map))
+		return (0);
+	init_map_info(game);
+	if (!is_pec(game))
+		return (0);
+	if (!check_reachable(game))
+		return (0);
+	return (1);
 }

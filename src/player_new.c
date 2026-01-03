@@ -6,7 +6,7 @@
 /*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:46:44 by jnovais           #+#    #+#             */
-/*   Updated: 2025/12/15 19:49:55 by jnovais          ###   ########.fr       */
+/*   Updated: 2025/12/27 20:25:02 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ void	player_w(t_game *game)
 	if (game->map[game->y_player][game->x_player] == 'E'
 			&& game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
-		game->map[game->y_player + 1][game->x_player] = '0';
 		game->moves++;
 		game->endgame = 1;
-		map_draw(game);
+		write(1, "Você venceu!!!\n", 15);
+		exit_game(game);
 	}
 	else if (game->map[game->y_player][game->x_player] == '1'
 			|| game->map[game->y_player][game->x_player] == 'E')
@@ -62,11 +61,10 @@ void	player_s(t_game *game)
 	if (game->map[game->y_player][game->x_player] == 'E'
 			&& game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
-		game->map[game->y_player - 1][game->x_player] = '0';
 		game->moves++;
 		game->endgame = 1;
-		map_draw(game);
+		write(1, "Você venceu!!!\n", 15);
+		exit_game(game);
 	}
 	else if (game->map[game->y_player][game->x_player] == '1'
 			|| game->map[game->y_player][game->x_player] == 'E')
@@ -89,11 +87,10 @@ void	player_d(t_game *game)
 	if (game->map[game->y_player][game->x_player] == 'E'
 			&& game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
-		game->map[game->y_player][game->x_player - 1] = '0';
 		game->moves++;
 		game->endgame = 1;
-		map_draw(game);
+		write(1, "Você venceu!!!\n", 15);
+		exit_game(game);
 	}
 	else if (game->map[game->y_player][game->x_player] == '1'
 			|| game->map[game->y_player][game->x_player] == 'E')
@@ -116,11 +113,10 @@ void	player_a(t_game *game)
 	if (game->map[game->y_player][game->x_player] == 'E'
 			&& game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
-		game->map[game->y_player][game->x_player + 1] = '0';
 		game->moves++;
 		game->endgame = 1;
-		map_draw(game);
+		write(1, "Você venceu!!!\n", 15);
+		exit_game(game);
 	}
 	else if (game->map[game->y_player][game->x_player] == '1'
 			|| game->map[game->y_player][game->x_player] == 'E')
